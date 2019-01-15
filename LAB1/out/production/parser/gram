@@ -1,0 +1,32 @@
+S -> function N ( A ) : N ;
+S -> procedure N ( A ) ;
+A -> e
+A -> A1
+A1 -> N N1
+N1 -> , N N1
+N1 -> : N N2
+N2 -> ; A1
+N2 -> e
+
+FUNC - function
+PROC - procedure
+NAME - N - function, variable, type name
+LPAREN
+RPAREN
+COMMA
+COLON
+SEMI
+END - e
+
+FIRST
+S	function procedure
+A	e N
+A1	N
+N1	, :
+N2	; e
+
+S	$
+A	)
+A1	)
+N1	)
+N2	)
