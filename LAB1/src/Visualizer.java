@@ -27,7 +27,7 @@ public class Visualizer extends JFrame {
         for (Tree child : tree.children) {
             Object edge = graph.insertEdge(parent, null, "", head,
                     draw(graph, child, parent,
-                            (left - 60 * tree.children.size()) + cnt * 100, top + wid + 30,
+                            (left - 60 * tree.children.size()) + cnt * 90, top + wid + 10,
                             len, wid));
             cnt++;
         }

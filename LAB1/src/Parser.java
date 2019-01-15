@@ -74,8 +74,32 @@ public class Parser {
             case RPAREN:
                 return new Tree("A");
             case NAME:
+                Tree D = D();
+                return new Tree("A", D);
+            default:
+                throw new AssertionError("unexpected symbol");
+        }
+    }
+
+    private Tree D() throws ParseException {
+        switch (lex.curToken()) {
+            case NAME:
                 Tree A1 = A1();
-                return new Tree("A", A1);
+                return new Tree("D", A1);
+            case VAR:
+                Tree A2 = A2();
+                return new Tree("D", A2);
+            default:
+                throw new AssertionError("unexpected symbol");
+        }
+    }
+
+    private Tree A2() throws ParseException {
+        switch (lex.curToken()) {
+            case VAR:
+                lex.nextToken();
+                Tree A1 = A1();
+                return new Tree("A2", new Tree("var"), A1);
             default:
                 throw new AssertionError("unexpected symbol");
         }
@@ -107,7 +131,7 @@ public class Parser {
             case COLON:
                 lex.nextToken();
                 if (lex.curToken() != Token.NAME) {
-                    throw new ParseException("variable name expected at position ", lex.curPos());
+                    throw new ParseException("type name expected at position ", lex.curPos());
                 }
                 var = lex.getLastName();
                 lex.nextToken();
@@ -125,8 +149,8 @@ public class Parser {
         switch (lex.curToken()) {
             case SEMI:
                 lex.nextToken();
-                Tree A1 = A1();
-                return new Tree("N2", new Tree(";"), A1);
+                Tree D = D();
+                return new Tree("N2", new Tree(";"), D);
             case RPAREN:
                 return new Tree("N2");
             default:

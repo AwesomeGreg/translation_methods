@@ -1,12 +1,15 @@
 S -> function N ( A ) : N ;
 S -> procedure N ( A ) ;
 A -> e
-A -> A1
+A -> D
+D -> A1
+D -> A2
 A1 -> N N1
 N1 -> , N N1
 N1 -> : N N2
-N2 -> ; A1
+N2 -> ; D
 N2 -> e
+A2 -> var A1
 
 FUNC - function
 PROC - procedure

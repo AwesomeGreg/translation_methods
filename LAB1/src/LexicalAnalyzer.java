@@ -68,13 +68,20 @@ public class LexicalAnalyzer {
                             break;
                         }
                     }
-                    if (key.equals("function"))
-                        curToken = Token.FUNC;
-                    else if (key.equals("procedure"))
-                        curToken = Token.PROC;
-                    else {
-                        curToken = Token.NAME;
-                        this.curName = key;
+                    switch (key) {
+                        case "function":
+                            curToken = Token.FUNC;
+                            break;
+                        case "procedure":
+                            curToken = Token.PROC;
+                            break;
+                        case "var":
+                            curToken = Token.VAR;
+                            break;
+                        default:
+                            curToken = Token.NAME;
+                            this.curName = key;
+                            break;
                     }
                 } else {
                     throw new ParseException("Illigal character " + (char) curChar, curPos);
